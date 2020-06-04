@@ -26,17 +26,30 @@
             <a class="navbar-brand" href="#"><i class="fas fa-chart-bar"></i></a>
           </div>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="domesticVehicles.html">Domaća vozila</a></li>
-            <li><a href="foreignVehicles.html">Strana vozila</a></li>
+            <li class="active"><a href="domesticVehicles.html">Ulaz u RH</a></li>
+            <li><a href="foreignVehicles.html">Izlaz iz RH</a></li>
           </ul>
         </div>
       </nav>
 
 
     <div class="container">
-        <h4>Ulaz u Republiku Hrvatsku || Broj pređenih vozila: <span style="color:darkgreen; font-weight: bold;"></span></h4>
+        <div class="row">
+            <div class="col-sm-6" id="firstPlaceForGraph">
+                <h3 class="text-center">Domaća vozila</h3>
+                <h4>Ulaz u Republiku Hrvatsku || Broj pređenih vozila: <span style="color:darkgreen; font-weight: bold;"></span></h4>
+            </div>
+            <div class="col-sm-6" id="secondPlaceForGraph">
+                <h3 class="text-center">Strana vozila</h3>
+                <h4>Ulaz u Republiku Hrvatsku || Broj pređenih vozila: <span style="color:darkred; font-weight: bold;"></span></h4>
+            </div>
+        </div>
+        <div id="thirdPlaceForGraph">
+            <h3>Godina s najvećim brojem ulazaka domaćih/stranih državljana</h3>
+
+        </div>
         <script>
-            var data1 = [
+            var cars_entry = [
                 {"id": 1, "type":"domaca_ulaz", "vehicle":"car", "year": 2010, "number": 7430},
                 {"id": 2, "type":"domaca_ulaz", "vehicle":"car", "year": 2011, "number": 7087},
                 {"id": 3, "type":"domaca_ulaz", "vehicle":"car", "year": 2012, "number": 6836},
@@ -49,27 +62,57 @@
                 {"id": 10, "type":"domaca_ulaz", "vehicle":"car", "year": 2019, "number": 8769}
             ]
 
-            var data2 = [
-                {"id": 1, "type":"autobusi_ulaz", "vehicle":"bus", "year": 2010, "number": 81},
-                {"id": 2, "type":"autobusi_ulaz", "vehicle":"bus", "year": 2011, "number": 76},
-                {"id": 3, "type":"autobusi_ulaz", "vehicle":"bus", "year": 2012, "number": 73},
-                {"id": 4, "type":"autobusi_ulaz", "vehicle":"bus", "year": 2013, "number": 79},
-                {"id": 5, "type":"autobusi_ulaz", "vehicle":"bus", "year": 2014, "number": 87},
-                {"id": 6, "type":"autobusi_ulaz", "vehicle":"bus", "year": 2015, "number": 86},
-                {"id": 7, "type":"autobusi_ulaz", "vehicle":"bus", "year": 2016, "number": 83},
-                {"id": 8, "type":"autobusi_ulaz", "vehicle":"bus", "year": 2017, "number": 93},
-                {"id": 9, "type":"autobusi_ulaz", "vehicle":"bus", "year": 2018, "number": 95},
-                {"id": 10, "type":"autobusi_ulaz", "vehicle":"bus", "year": 2019, "number": 96}
+            var cars_exit = [
+                {"id": 1, "type":"autobusi_ulaz", "vehicle":"bus", "year": 2010, "number": 14056},
+                {"id": 2, "type":"autobusi_ulaz", "vehicle":"bus", "year": 2011, "number": 14228},
+                {"id": 3, "type":"autobusi_ulaz", "vehicle":"bus", "year": 2012, "number": 13503},
+                {"id": 4, "type":"autobusi_ulaz", "vehicle":"bus", "year": 2013, "number": 13736},
+                {"id": 5, "type":"autobusi_ulaz", "vehicle":"bus", "year": 2014, "number": 14183},
+                {"id": 6, "type":"autobusi_ulaz", "vehicle":"bus", "year": 2015, "number": 15176},
+                {"id": 7, "type":"autobusi_ulaz", "vehicle":"bus", "year": 2016, "number": 16066},
+                {"id": 8, "type":"autobusi_ulaz", "vehicle":"bus", "year": 2017, "number": 16642},
+                {"id": 9, "type":"autobusi_ulaz", "vehicle":"bus", "year": 2018, "number": 16968},
+                {"id": 10, "type":"autobusi_ulaz", "vehicle":"bus", "year": 2019, "number": 17783}
             ]
 
-            var data = [];
-            for(let i in data1) {
-                data.push(data1[i].number);
+            var cars_entry_2019 = [
+            {"id": 1, "type":"autobusi_ulaz", "vehicle":"bus", "year": "Siječanj", "number": 1475},
+                {"id": 2, "type":"autobusi_ulaz", "vehicle":"bus", "year": "Veljača", "number": 1385},
+                {"id": 3, "type":"autobusi_ulaz", "vehicle":"bus", "year": "Ožujak", "number": 1686},
+                {"id": 4, "type":"autobusi_ulaz", "vehicle":"bus", "year": "Travanj", "number": 2077},
+                {"id": 5, "type":"autobusi_ulaz", "vehicle":"bus", "year": "Svibanj", "number": 2055},
+                {"id": 6, "type":"autobusi_ulaz", "vehicle":"bus", "year": "Lipanj", "number": 2622},
+                {"id": 7, "type":"autobusi_ulaz", "vehicle":"bus", "year": "Srpanj", "number": 3412},
+                {"id": 8, "type":"autobusi_ulaz", "vehicle":"bus", "year": "Kolovoz", "number": 3942},
+                {"id": 9, "type":"autobusi_ulaz", "vehicle":"bus", "year": "Rujan", "number": 2368},
+                {"id": 10, "type":"autobusi_ulaz", "vehicle":"bus", "year": "Listopad", "number": 2042},
+                {"id": 9, "type":"autobusi_ulaz", "vehicle":"bus", "year": "Studeni", "number": 1686},
+                {"id": 10, "type":"autobusi_ulaz", "vehicle":"bus", "year": "Prosinac", "number": 1802}
+
+            ]
+
+            var data1 = [];
+            for(let i in cars_entry) {
+                data1.push(cars_entry[i].number);
             }
 
-            var color = d3.scale.ordinal()
-            .domain(data1)
-            .range( [d3.rgb("#CD5C5C"), d3.rgb("#F08080"), d3.rgb("#FA8072"), d3.rgb("#E9967A"), d3.rgb("#FFA07A")])
+            var data2 = [];
+            for(let i in cars_exit) {
+                data2.push(cars_exit[i].number);
+            }
+
+            var data3 = [];
+            for(let i in cars_entry_2019) {
+                data3.push(cars_entry_2019[i].number)
+            }
+
+            var greenColors = d3.scale.ordinal()
+                .domain(data1)
+                .range( [d3.rgb("green"), d3.rgb("limegreen")]);
+
+            var redColors = d3.scale.ordinal()
+                .domain(data2)
+                .range([d3.rgb("red"), d3.rgb("darkred")]);
 
             var margin = {top: 20, bottom: 70, left: 80, right: 20};
             var svgWidth = 500 - margin.left - margin.right;
@@ -78,26 +121,25 @@
             var barWidth = svgWidth / data1.length - barPadding;
 
 
-
-            var svg = d3.select("body div.container")
+            var svg = d3.select("#firstPlaceForGraph")
                         .append("svg")
                         .attr("width", svgWidth + margin.left + margin.right)
                         .attr("height", svgHeight + margin.top + margin.bottom)
-                        .attr("style", "background-color: lightgreen")
+                        .attr("style", "background-color: lightgrey")
                         .append("g")
                         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
             //kreiranje ordinalne skale za x-os
             var x = d3.scale.ordinal()
-                .domain(d3.range(data.length)) //[0,1,2,3,4,5,7,8,9]
+                .domain(d3.range(data1.length)) //[0,1,2,3,4,5,7,8,9]
                 .rangeRoundBands([0, svgWidth]); //prebacuje domenu u navedenom rasponu od 0 do širine svg-a
 
             //dodavanje skale na x-os
             var xAxis = d3.svg.axis()
                 .scale(x)
                 .orient("bottom")
-                .tickFormat(function(i) {return data1[i].year + "."; });
+                .tickFormat(function(i) {return cars_entry[i].year + "."; });
 
             //učitavanje x osi popraćeno animacijom u trajanju od 1s
             svg.append("g")
@@ -118,7 +160,7 @@
                 .style("stroke-width", ".5px");
 
             var y = d3.scale.linear()
-                .domain([0, d3.max(data)+1000]) // 0, 8769 u ovom slučaju
+                .domain([0, d3.max(data1)+1000]) // 0, 8769 u ovom slučaju
                 .range([svgHeight, 0]); //graf se prostire do točke svgHeight, drugim parametrom se sužava
 
             var yAxis = d3.svg.axis()
@@ -145,9 +187,10 @@
                 .style("stroke", "red")
                 .style("stroke-width", ".5px");
 
+
             //postavljanje bar chart-a
             var barchart = svg.selectAll("rect")
-                .data(data)
+                .data(data1)
                 .enter()
                 .append("rect")
                 .attr("x", function(d, i) {return x(i) + 10; })
@@ -155,8 +198,8 @@
                 .attr("height", function(d) { return svgHeight - y(0); })
                 .attr("width", barWidth)
                 .attr("opacity", "90%")
-                .attr("fill", function(i) { return color(i)});
-
+                .attr("fill", function(i) { return greenColors(i)});
+            
             //Animacija postavljanja elemenata grafa u trajanju od 1s
             svg.selectAll("rect")
                 .transition()
@@ -169,7 +212,7 @@
             svg.selectAll("rect")
                 .on("mouseover", function(d) {
                     d3.select(this)
-                        .attr("fill", function(i) { return color(i)})
+                        .attr("fill", function(i) { return greenColors(i)})
                         .attr("opacity", "50");
                     d3.select("body div.container h4 span")
                         .text(d);
@@ -177,9 +220,222 @@
                 //na mouseout prikazuje briše se prikaz iz <span> elementa
                 .on("mouseout", function() {
                     d3.select(this)
-                        .attr("fill", function(i) { return color(i)})
+                        .attr("fill", function(i) { return greenColors(i)})
                         .attr("opacity", "90%");
                     d3.select("body div.container h4 span")
+                        .text("");
+                })
+
+
+                //SECOND GRAPH
+
+                var svg = d3.select("#secondPlaceForGraph")
+                        .append("svg")
+                        .attr("width", svgWidth + margin.left + margin.right)
+                        .attr("height", svgHeight + margin.top + margin.bottom)
+                        .attr("style", "background-color: lightgrey")
+                        .append("g")
+                        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+                        //kreiranje ordinalne skale za x-os
+            var x = d3.scale.ordinal()
+                .domain(d3.range(data2.length)) //[0,1,2,3,4,5,7,8,9]
+                .rangeRoundBands([0, svgWidth]); //prebacuje domenu u navedenom rasponu od 0 do širine svg-a
+
+            //dodavanje skale na x-os
+            var xAxis = d3.svg.axis()
+                .scale(x)
+                .orient("bottom")
+                .tickFormat(function(i) {return cars_exit[i].year + "."; });
+
+            //učitavanje x osi popraćeno animacijom u trajanju od 1s
+            svg.append("g")
+                .attr("transform", "translate(0," + svgHeight + ")") //da ovog nema skala bi bila gore a ne dolje
+                .transition()
+                .duration(1000)
+                .call(xAxis)
+                .style("stroke", "darkgreen");
+
+            //za naziv x osi
+            svg.append("text")
+                .attr("x", (svgWidth / 2))
+                .attr("y", (svgHeight + (margin.bottom / 2)))
+                .attr("dy", "1em")
+                .style("text-anchor", "middle")
+                .text("Godina [2010. - 2019.]")
+                .style("stroke", "red")
+                .style("stroke-width", ".5px");
+
+            var y = d3.scale.linear()
+                .domain([0, d3.max(data2)+1000]) // 0, 8769 u ovom slučaju
+                .range([svgHeight, 0]); //graf se prostire do točke svgHeight, drugim parametrom se sužava
+
+            var yAxis = d3.svg.axis()
+                .scale(y)
+                .orient("left")
+                .tickFormat(function(i) { return i;});
+
+            //Animacija učitavanja y osi u trajanju od 1s
+            svg.append("g")
+                .transition()
+                .duration(1000)
+                .call(yAxis)
+                .attr("class", "yaxis")
+                .style("stroke", "darkgreen")
+
+            //za naziv y-osi
+            svg.append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("x",0 - (svgHeight / 2))
+                .attr("y", 0 - margin.left)
+                .attr("dy", "1.5em")
+                .style("text-anchor", "middle")
+                .text("Broj automobila")
+                .style("stroke", "red")
+                .style("stroke-width", ".5px");
+
+
+            //postavljanje bar chart-a
+            var barchart = svg.selectAll("rect")
+                .data(data2)
+                .enter()
+                .append("rect")
+                .attr("x", function(d, i) {return x(i) + 10; })
+                .attr("y", function(d) { return y(0)})
+                .attr("height", function(d) { return svgHeight - y(0); })
+                .attr("width", barWidth)
+                .attr("opacity", "90%")
+                .attr("fill", function(i) { return redColors(i)});
+            
+            //Animacija postavljanja elemenata grafa u trajanju od 1s
+            svg.selectAll("rect")
+                .transition()
+                .duration(1000)
+                .attr("y", function(d) { return y(d)})
+                .attr("height", function(d) { return (svgHeight - y(d));})
+                .delay(function (d, i) {console.log(i); return i*100;})
+
+            //na mouseover prikazuje se broj vozila u <span> elementu
+            svg.selectAll("rect")
+                .on("mouseover", function(d) {
+                    d3.select(this)
+                        .attr("fill", function(i) { return redColors(i)})
+                        .attr("opacity", "50");
+                    d3.select("#secondPlaceForGraph h4 span")
+                        .text(d);
+                })
+                //na mouseout prikazuje briše se prikaz iz <span> elementa
+                .on("mouseout", function() {
+                    d3.select(this)
+                        .attr("fill", function(i) { return redColors(i)})
+                        .attr("opacity", "90%");
+                    d3.select("#secondPlaceForGraph h4 span")
+                        .text("");
+                })
+
+
+                //THIRD GRAPH
+                var svg = d3.select("#thirdPlaceForGraph")
+                        .append("svg")
+                        .attr("width", svgWidth + margin.left + margin.right)
+                        .attr("height", svgHeight + margin.top + margin.bottom)
+                        .attr("style", "background-color: lightgrey")
+                        .append("g")
+                        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+                        //kreiranje ordinalne skale za x-os
+            var x = d3.scale.ordinal()
+                .domain(d3.range(data3.length)) //[0,1,2,3,4,5,7,8,9]
+                .rangeRoundBands([0, svgWidth]); //prebacuje domenu u navedenom rasponu od 0 do širine svg-a
+
+            //dodavanje skale na x-os
+            var xAxis = d3.svg.axis()
+                .scale(x)
+                .orient("bottom")
+                .tickFormat(function(i) {return cars_entry_2019[i].year; });
+
+            //učitavanje x osi popraćeno animacijom u trajanju od 1s
+            svg.append("g")
+                .attr("transform", "translate(0," + svgHeight + ")") //da ovog nema skala bi bila gore a ne dolje
+                .transition()
+                .duration(1000)
+                .call(xAxis)
+                .style("stroke", "darkgreen");
+
+            //za naziv x osi
+            svg.append("text")
+                .attr("x", (svgWidth / 2))
+                .attr("y", (svgHeight + (margin.bottom / 2)))
+                .attr("dy", "1em")
+                .style("text-anchor", "middle")
+                .text("Godina [2010. - 2019.]")
+                .style("stroke", "red")
+                .style("stroke-width", ".5px");
+
+            var y = d3.scale.linear()
+                .domain([0, d3.max(data3)+1000]) // 0, 8769 u ovom slučaju
+                .range([svgHeight, 0]); //graf se prostire do točke svgHeight, drugim parametrom se sužava
+
+            var yAxis = d3.svg.axis()
+                .scale(y)
+                .orient("left")
+                .tickFormat(function(i) { return i;});
+
+            //Animacija učitavanja y osi u trajanju od 1s
+            svg.append("g")
+                .transition()
+                .duration(1000)
+                .call(yAxis)
+                .attr("class", "yaxis")
+                .style("stroke", "darkgreen")
+
+            //za naziv y-osi
+            svg.append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("x",0 - (svgHeight / 2))
+                .attr("y", 0 - margin.left)
+                .attr("dy", "1.5em")
+                .style("text-anchor", "middle")
+                .text("Broj automobila")
+                .style("stroke", "red")
+                .style("stroke-width", ".5px");
+
+
+            //postavljanje bar chart-a
+            var barchart = svg.selectAll("rect")
+                .data(data3)
+                .enter()
+                .append("rect")
+                .attr("x", function(d, i) {return x(i) + 10; })
+                .attr("y", function(d) { return y(0)})
+                .attr("height", function(d) { return svgHeight - y(0); })
+                .attr("width", barWidth)
+                .attr("opacity", "90%")
+                .attr("fill", function(i) { return redColors(i)});
+            
+            //Animacija postavljanja elemenata grafa u trajanju od 1s
+            svg.selectAll("rect")
+                .transition()
+                .duration(1000)
+                .attr("y", function(d) { return y(d)})
+                .attr("height", function(d) { return (svgHeight - y(d));})
+                .delay(function (d, i) {console.log(i); return i*100;})
+
+            //na mouseover prikazuje se broj vozila u <span> elementu
+            svg.selectAll("rect")
+                .on("mouseover", function(d) {
+                    d3.select(this)
+                        .attr("fill", function(i) { return redColors(i)})
+                        .attr("opacity", "50");
+                    d3.select("#secondPlaceForGraph h4 span")
+                        .text(d);
+                })
+                //na mouseout prikazuje briše se prikaz iz <span> elementa
+                .on("mouseout", function() {
+                    d3.select(this)
+                        .attr("fill", function(i) { return redColors(i)})
+                        .attr("opacity", "90%");
+                    d3.select("#secondPlaceForGraph h4 span")
                         .text("");
                 })
         </script>
