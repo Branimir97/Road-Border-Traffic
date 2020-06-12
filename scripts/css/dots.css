@@ -1,0 +1,8 @@
+.dot1 {
+    cursor: pointer;
+    fill: darkgreen;
+  }
+  .dot2 {
+    cursor: pointer;
+    fill: darkred;
+  }
