@@ -49,7 +49,7 @@ var xAxis = d3.svg.axis()
 
 //učitavanje x osi popraćeno animacijom u trajanju od 1s
 svg.append("g")
-    .attr("transform", "translate(0," + svgHeight + ")") //da ovog nema skala bi bila gore a ne dolje
+    .attr("transform", "translate(0," + svgHeight + ")") 
     .transition()
     .duration(1000)
     .call(xAxis)
@@ -107,7 +107,7 @@ var barchart = svg.selectAll("rect")
     .attr("opacity", "90%")
     .attr("fill", function(d) { return redColors[findRedColor(d)]});
 
-//Animacija postavljanja elemenata grafa u trajanju od 1s
+//animacija postavljanja elemenata grafa u trajanju od 1s
 svg.selectAll("rect")
     .transition()
     .duration(1000)
@@ -128,7 +128,6 @@ svg.selectAll("rect")
         d3.select("#foreignVehiclesGraph h6 span")
             .text("");
     })
-
 
 //odabir nijansi crvene boje na osnovu prijeđenog broja vozila
 function findRedColor(data) {

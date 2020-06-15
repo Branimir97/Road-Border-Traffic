@@ -49,7 +49,7 @@ var xAxis = d3.svg.axis()
 
 //učitavanje x osi popraćeno animacijom u trajanju od 1s
 svg.append("g")
-    .attr("transform", "translate(0," + svgHeight + ")") //da ovog nema skala bi bila gore a ne dolje
+    .attr("transform", "translate(0," + svgHeight + ")") 
     .transition()
     .duration(1000)
     .call(xAxis)
@@ -76,7 +76,7 @@ var yAxis = d3.svg.axis()
     .orient("left")
     .tickFormat(function(i) { return i;});
 
-//Animacija učitavanja y osi u trajanju od 1s
+//nimacija učitavanja y osi u trajanju od 1s
 svg.append("g")
     .transition()
     .duration(1000)
@@ -106,7 +106,7 @@ var barchart = svg.selectAll("rect")
     .attr("opacity", "90%")
     .attr("fill", function(d) { return greenColors[findGreenColor(d)]});
 
-//Animacija postavljanja elemenata grafa u trajanju od 1s
+//animacija postavljanja elemenata grafa u trajanju od 1s
 svg.selectAll("rect")
     .transition()
     .duration(1000)
@@ -119,13 +119,13 @@ svg.selectAll("rect")
     .on("mouseover", function(d) {
         d3.select(this)
             .attr("cursor", "pointer"); 
-        d3.select("#foreignDomesticGraph h6 span")
+        d3.select("#domesticVehiclesGraph h6 span")
             .text(d);
     })
-    //na mouseout prikazuje briše se prikaz iz <span> elementa
+    //na mouseout briše se prikaz iz <span> elementa
     .on("mouseout", function() {
         d3.select(this)
-        d3.select("#foreignDomesticGraph h6 span")
+        d3.select("#domesticVehiclesGraph h6 span")
             .text("");
     })
 });

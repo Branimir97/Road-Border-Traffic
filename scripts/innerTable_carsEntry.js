@@ -1,8 +1,11 @@
+//ispunjavanje tablice podacima iz data.json kreirane u HTML-u pod id = #table
+//podaci se odnose na ulaz domaćih i stranih vozila
 $(document).ready(function(){
     $.getJSON("scripts/data.json", function(json){
         var domesticVehicles = [];
         var foreignVehicles = [];
         for(let i=0;i<json.length;i++) {
+
             if(json[i].type=="domaca_ulaz") {
                 domesticVehicles.push(json[i]);
             }

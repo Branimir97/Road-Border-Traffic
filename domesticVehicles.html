@@ -7,13 +7,12 @@
     <link rel="icon" href="./images/graph.png">
 
     <!--Library za bootstrap 4-->
-    <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-        crossorigin="anonymous"
-    />
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    
     <!--Library za jQuery-->
     <script
         src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -26,6 +25,7 @@
 
     <!--Library za d3.js-->
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
 </head>
 <body>
     <div class="jumbotron mb-0">
@@ -34,17 +34,14 @@
     </div>
 
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <!-- Brand -->
         <a class="navbar-brand" href="domesticVehicles.html">
             <i class="fas fa-chart-bar"></i>
         </a>
       
-        <!-- Toggler/collapsibe Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
       
-        <!-- Navbar links -->
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
           <ul class="navbar-nav">
             <li class="nav-item">
@@ -61,12 +58,12 @@
         <div class="row">
             <div class="col-sm-6" id="domesticVehiclesGraph">
                 <h4 class="text-center">Domaća vozila</h3>
-                <h6>Ulaz u Republiku Hrvatsku || Broj pređenih vozila: <span style="color:darkgreen; font-weight: bold;"></span></h4>
+                <h6>Ulaz u Republiku Hrvatsku || Broj prelazaka: <span style="color:darkgreen; font-weight: bold;"></span></h4>
                 <script src="scripts/barchart_domesticEntry.js"></script>
             </div>
             <div class="col-sm-6" id="foreignVehiclesGraph">
                 <h4 class="text-center">Strana vozila</h3>
-                <h6>Ulaz u Republiku Hrvatsku || Broj pređenih vozila: <span style="color:darkred; font-weight: bold;"></span></h4>
+                <h6>Ulaz u Republiku Hrvatsku || Broj prelazaka: <span style="color:darkred; font-weight: bold;"></span></h4>
                 <script src="scripts/barchart_foreignEntry.js"></script>
             </div>
         </div>
@@ -94,6 +91,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6" id="pieChart">
+                    <h4 class="text-center mt-4">Grafički prikaz udjela domaćih u odnosu na strana vozila</h4>
                     <script src="scripts/pieChart.js"></script>
                 </div>
             </div>
